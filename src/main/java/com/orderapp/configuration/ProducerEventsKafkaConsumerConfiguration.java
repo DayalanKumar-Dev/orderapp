@@ -31,6 +31,9 @@ public class ProducerEventsKafkaConsumerConfiguration {
             return new DefaultKafkaConsumerFactory(this.properties.buildConsumerProperties());
         }));
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
+        //setting concurrent consumers by spinning multiple instances of the same message listener
+        // ConcurrentMessageListenerContainer
+        factory.setConcurrency(3);
         return factory;
     }
 }
